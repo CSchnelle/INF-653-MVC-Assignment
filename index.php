@@ -2,8 +2,8 @@
 require('./model/database.php');
 require('./model/item_db.php');
 require('./model/category_db.php');
-include('view/header.php');
-include('view/footer.php');
+include('./view/header.php');
+include('./view/footer.php');
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
 	$action = filter_input(INPUT_GET, 'action');
