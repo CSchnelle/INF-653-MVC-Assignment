@@ -11,7 +11,7 @@ if ($action == NULL) {
 		$action = 'list_items';
 	}
 }
-//show items
+//show all items
 if ($action == 'list_items') {
 	$category_id = filter_input(INPUT_GET, 'category_id', FILTER_VALIDATE_INT);
 	
