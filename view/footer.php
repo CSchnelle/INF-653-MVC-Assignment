@@ -1,6 +1,6 @@
 <footer>
     <p class="copyright">
-        &copy; <?php echo date("Y"); ?> TO DO LIST, INC. </p>
+        &copy; <?php echo date("Y"); ?> My To Do List </p>
 </footer>
 </body>
 </html>
