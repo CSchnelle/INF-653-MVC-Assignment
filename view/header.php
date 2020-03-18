@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title> TO DO LIST</title>
-		<link rel ="stylesheet" type="text/css"
-		      href="main.css">
-	</head>
-	<body>
-		<header>
-			<h1>TO DO LIST</h1>
-		</header>
-		
+
+<!-- the head section -->
+<head>
+    <title>My To Do List</title>
+    <link rel="stylesheet" type="text/css" href="view/css/main.css" />
+</head>
+
+<!-- the body section -->
+<body>
+    <header>
+        <h1>My To Do List</h1>
+    </header>
