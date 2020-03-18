@@ -1,50 +1,61 @@
-<?php include './view/header.php':?>
-<main>
-<h1> Item List</h1>
+<?php include 'view/header.php'; ?>
+    <main>
+        <section>
+            <?php if ( sizeof($categories) != 0) { ?>
+                <form action="." method="get" id="category_selection">
+                <label>Category:</label>
+                <select name="category_id">
+                    <option value="0">View All Categories</option>
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?php echo $category['categoryID']; ?>">
+                            <?php echo $category['categoryName']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select> 
+                <input type="submit" value="Submit" class="button blue">
+                </form>
+            <?php } ?>
 
-<aside>
-	<h2>Categories</h2>
-	<nav>
-	<ul>
-	<?php foreach ($categories as $category) :?>
-	<li>
-	<a href="?category_id=<?php echo $category['categoryID'];
-	<?php echo $category['categoryName'];?>
-	</a>
-	</li>
-	<?php endforeach; ?>
-	</ul>
-	<nav>
-</aside>
-
-<section>
-<h2><?php echo $category_name; ?></h2>
-<table>
-	<tr>
-		<th>Description</th>
-		<th>Title</th>
-		<th>$nbsp;</th>
-	</tr>
-	<?php foreach($items as $item) :?>
-	<tr>
-		<td><?php echo $item['itemID'];?></td>
-		<td><?php echo $item['title'];?></td>
-		<td><form action="." method="post">
-			<input type="hidden" name = "action"
-				value = "delete_item">
-			<input type="hidden" name="item_id"
-				value = "<?php echo $item['itemID'];?>
-			<input type="hidden" name="category_id"
-				value = "<?php echo $item['categoryID'];?>
-			<input type ="submit" value="Delete">
-			</form></td>
-		</tr>
-		<?php endforeach; ?>
-</table>
-<p class="last_paragraph">
-	<a href="?action=show_add_form">Add Item</a>
-</p>
-</section>
-</main>
-<?php include './view/footer.php':?>
+            <?php if( sizeof($items) != 0 ) { ?>
+                <div id="table-overflow">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th colspan="2">Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($items as $item) : ?>
+                            <tr>
+                                <td><?php echo $item['Title']; ?></td>
+                                <td><?php echo $item['Description']; ?></td>
+                                <?php if ($item['categoryName'] == null || $item['categoryName'] == false) { ?>
+                                    <td>None</td>
+                                <?php } else { ?>
+                                    <td><?php echo $item['categoryName']; ?></td>
+                                <?php } ?>
+                                <td>
+                                    <form action="." method="post">
+                                        <input type="hidden" name="action" value="delete_item">
+                                        <input type="hidden" name="item_id"
+                                            value="<?php echo $item['ItemNum']; ?>">
+                                        <input type="submit" value="Remove" class="button red">
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <p><a href="?action=show_add_form">Click here</a> to add a new item to the list.</p>     
+            <?php } else { ?>
+                <p>No to do list items exist yet. <a href="?action=show_add_form">Click here</a> to add an item.</p>     
+            <?php } ?>
+            <br>
+            <p><a href="index.php?action=list_categories">View/Edit Categories</a></p>
+        </section>
+    </main>
+<?php include 'view/footer.php'; ?>
 				
