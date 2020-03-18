@@ -1,24 +1,44 @@
-<?php include "./view/header.php';?>
+<?php include 'view/header.php'; ?>
 <main>
-<h1>Category List</h1>
-<aside>
-	<h2>Categories</h2>
-	<nav>
-	<ul>
-	<?php foreach ($categories as $category) :?>
-	<li>
-	<a href="?category_id=<?php echo $category['categoryID'];
-	<?php echo $category['categoryName'];?>
-	</a>
-	</li>
-	<?php endforeach; ?>
-	</ul>
-	<nav>
-</aside>
+    <h2>Category List</h2>
+    <section>
+        <table>
+            <tr>
+                <th colspan="2">Name</th>
+            </tr>        
+            <?php foreach ($categories as $category) : ?>
+            <tr>
+                <td><?php echo $category['categoryName']; ?></td>
+                <td>
+                    <form action="." method="post">
+                        <input type="hidden" name="action" value="delete_category">
+                        <input type="hidden" name="category_id"
+                            value="<?php echo $category['categoryID']; ?>"/>
+                        <input type="submit" value="Remove" class="button red" />
+                    </form>
+                </td>
+            </tr>
+            <?php endforeach; ?>    
+        </table>
+    </section>
+    <section>
+        <h2>Add Category</h2>
+        <form action="." method="post" id="add_category_form">
+            <input type="hidden" name="action" value="add_category">
 
-<p class="last_paragraph">
-	<a href="?action=show_add_form">Add Category</a>
-</p>
-</section>
+            <label>Name:</label>
+            <input type="text" name="category_name" max="20" required><br>
+
+            <label>&nbsp;</label>
+            <input id="add_category_button" type="submit" class="button blue" value="Add Category"><br>
+        </form>
+    </section>
+    <section>
+        <p><a href="index.php">View To Do List</a></p>
+    </section>
 </main>
-<?php include './view/footer.php':?>
+<footer>
+    <p>&copy; <?php echo date("Y"); ?> My To Do List</p>
+</footer>
+</body>
+</html>
